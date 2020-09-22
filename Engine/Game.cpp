@@ -20,11 +20,15 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
+#include "Vec2.h"
 
-Game::Game( MainWindow& wnd )
+
+Game::Game(MainWindow& wnd)
 	:
-	wnd( wnd ),
-	gfx( wnd )
+	wnd(wnd),
+	gfx(wnd),
+	ball(Colors::Yellow),
+	wal()
 {
 }
 
@@ -41,5 +45,6 @@ void Game::UpdateModel()
 }
 
 void Game::ComposeFrame()
-{
+{	
+	ball.DrawBorder(gfx, Colors::Blue);	
 }
