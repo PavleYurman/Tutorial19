@@ -42,9 +42,12 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	float dt = ft.Mark();
+	ball.Update(dt);
 }
 
 void Game::ComposeFrame()
 {	
-	ball.DrawBorder(gfx, Colors::Blue);	
+	ball.Draw(gfx);
+	/*ball.DrawRectSw(gfx, Colors::Blue);*/
 }

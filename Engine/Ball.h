@@ -10,7 +10,8 @@ class Ball
 public:
 	Ball(Color c);
 	void Draw(Graphics& gfx);
-	void DrawBorder(Graphics& gfx, Color c);
+	void DrawRectSw(Graphics& gfx, Color c);
+	void Ball::Update(float dt);
 public:
 	Vec2 pos;
 	Vec2 vel = Vec2(60.0f, 60.0f);

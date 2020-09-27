@@ -8,7 +8,7 @@ Rect::Rect(const Vec2& upperLeft, float in_width, float in_hight)
 	up = upperLeft.y;
 	right = left + width;
 	down = up + height;
-	center = upperLeft;
+	center = Vec2( upperLeft.x + (width / 2.0f), upperLeft.y + (width / 2.0f));
 }
 
 Rect::Rect(const Vec2& upperLeft, const Vec2& downRight)

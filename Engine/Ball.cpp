@@ -9,11 +9,15 @@ Ball::Ball(Color c)
 
 void Ball::Draw(Graphics& gfx)
 {
-	SpriteCodex::DrawBall(r.center, gfx);
+	SpriteCodex::DrawBall(Vec2(int(pos.x + radius), int(pos.y + radius)), gfx);
 }
 
-void Ball::DrawBorder(Graphics& gfx, Color c)
+void Ball::DrawRectSw(Graphics& gfx, Color c)
 {
-	gfx.DrawRect(int(pos.x - radius), int(pos.y - radius), int(pos.x + radius), int(pos.y + radius), c);
+	gfx.DrawRect(int(pos.x), int(pos.y), int(pos.x + radius * 2), int(pos.y + radius * 2), c);
 }
 
+void Ball::Update(float dt)
+{
+	pos += vel * dt;
+}
