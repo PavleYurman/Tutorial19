@@ -1,25 +1,28 @@
 #include "Rectangle.h"
 
-Rect::Rect(const Vec2& upperLeft, float in_width, float in_hight)
+Rect::Rect(float left_in, float right_in, float up_in, float bottom_in)
+	:
+	left(left_in),
+	right(right_in),
+	up(up_in),
+	down(bottom_in)
 {
-	width = in_width;
-	height = in_hight;
-	left = upperLeft.x;
-	up = upperLeft.y;
-	right = left + width;
-	down = up + height;
-	center = Vec2( upperLeft.x + (width / 2.0f), upperLeft.y + (width / 2.0f));
+
+}
+
+Rect::Rect(const Vec2& upperLeft, float in_width, float in_hight)
+	:
+	Rect(upperLeft, Vec2(upperLeft.x + in_width, upperLeft.y + in_hight))
+{
+	
 }
 
 Rect::Rect(const Vec2& upperLeft, const Vec2& downRight)
+	:
+	Rect(upperLeft.x, downRight.x, upperLeft.y, downRight.y)
 {
-	left = upperLeft.x;
-	up = upperLeft.y;
-	right = downRight.x;
-	down = downRight.y;
-	width = right - left;
-	height = up - down;
-	center = Vec2( width / 2.0f, height / 2.0 );
+		
+	//center = Vec2(upperLeft.x + (width / 2.0f), upperLeft.y + (height / 2.0f));
 
 }
 
