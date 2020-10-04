@@ -26,7 +26,7 @@
 #include "FrameTimer.h"
 #include "Ball.h"
 #include "Wall.h"
-
+#include "Sound.h"
 
 class Game
 {
@@ -49,5 +49,6 @@ private:
 	FrameTimer ft;
 	Ball ball;
 	Wall wal;
+	Sound bounce_sound;
 	/********************************/
 };

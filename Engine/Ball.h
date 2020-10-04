@@ -10,15 +10,15 @@ class Ball
 {
 public:
 	Ball() = default;
-	Ball(const Vec2& pos, const Vec2& vel, Color c);
-	Ball(Color c);
-	void Draw(Graphics& gfx);
-	void DrawRectSw(Graphics& gfx, Color c);
-	void Ball::Update(float dt);
-	bool isCollided(Wall& wl);
+	Ball( const Vec2& pos, const Vec2& vel, Color c );
+	Ball( Color c );
+	void Draw( Graphics& gfx );
+	void DrawRectSw( Graphics& gfx, Color c );
+	void Ball::Update( float dt );
+	bool isCollided( Wall& wl );
 	void ChangeX();
 	void ChangeY();
-	void Rebound(Wall& wl);
+	void Rebound( Wall& wl );
 
 public:
 	Vec2 pos;

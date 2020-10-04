@@ -1,4 +1,5 @@
 #include "Ball.h"
+#include "SoundEffect.h"
 
 
 Ball::Ball(const Vec2& pos_in, const Vec2& vel_in, Color c)
@@ -74,10 +75,10 @@ void Ball::ChangeY()
 	vel.y = -vel.y;
 }
 
-void Ball::Rebound(Wall& wl)
+void Ball::Rebound( Wall& wl )
 {
 	if (isCollided(wl))
-	{
+	{		
 		if (chng_inY)
 		{
 			ChangeY();

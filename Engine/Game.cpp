@@ -28,7 +28,8 @@ Game::Game(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd),
 	ball(Colors::Yellow),
-	wal()
+	wal(),
+	bounce_sound(L"Sounds\\arkpad.wav")
 {
 }
 
@@ -44,9 +45,11 @@ void Game::UpdateModel()
 {
 	float dt = ft.Mark();		
 	ball.Update(dt);
-	ball.Rebound(wal);
-	
-
+	ball.Rebound(wal);	
+	if ( ball.isCollided(wal) )
+	{
+		bounce_sound.Play();
+	}
 }
 
 void Game::ComposeFrame()
