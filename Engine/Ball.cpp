@@ -5,14 +5,14 @@ Ball::Ball(const Vec2& pos_in, const Vec2& vel_in, Color c)
 	:
 	pos(pos_in),
 	vel(vel_in)
-{
-	r = Rect(Vec2(pos.x - radius, pos.y - radius), Vec2(pos.x + radius, pos.y + radius));
+{	
+	r = r.GenerateRect(pos, radius * 2, radius * 2);
 }
 
 Ball::Ball(Color c)
 {
-	pos = Vec2(100.0f, 100.0f);
-	r = Rect(Vec2(pos.x - radius, pos.y - radius), Vec2(pos.x + radius, pos.y + radius));
+	pos = Vec2(100.0f, 100.0f);	
+	r = r.GenerateRect(pos, radius * 2, radius * 2);
 }
 
 void Ball::Draw(Graphics& gfx)
@@ -33,8 +33,8 @@ void Ball::Update(float dt)
 bool Ball::isCollided(Wall& wl)
 {
 	bool collision = false;
-	r = Rect( Vec2( pos.x - radius, pos.y - radius ), Vec2( pos.x + radius , pos.y + radius ) );
-	// predpostavimo odboj vedno samo od ene stranice, nikoli od dveh hkrati
+	r = r.GenerateRect(pos, radius * 2, radius * 2);
+	// predpostavimo odboj oz zidu vedno samo od ene stranice, nikoli od dveh hkrati
 	if (r.down >= wl.rectangle.down)
 	{
 		collision = true;
@@ -105,6 +105,8 @@ void Ball::Rebound(Wall& wl)
 
 	}
 }
+
+
 
 
 

@@ -9,6 +9,7 @@ public:
 	Rect(float left_in, float right_in, float up_in, float bottom_in);
 	Rect(const Vec2& upperLeft, float width, float hight);
 	Rect(const Vec2& upperLeft, const Vec2& downRight);
+	static Rect GenerateRect(const Vec2& upperLeft, float width, float hight);
 	void Draw(Graphics& gfx, Color c);
 
 public:

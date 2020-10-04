@@ -26,6 +26,11 @@ Rect::Rect(const Vec2& upperLeft, const Vec2& downRight)
 
 }
 
+Rect Rect::GenerateRect(const Vec2& upperLeft, float width, float hight)
+{	
+	return Rect(Vec2(upperLeft.x - (width / 2.0f), upperLeft.y - (width / 2.0f)), Vec2(upperLeft.x + (width / 2.0f), upperLeft.y + (width / 2.0f)));
+}
+
 void Rect::Draw(Graphics& gfx, Color c)
 {
 	gfx.DrawRect(int(left), int(up), int(right), int(down), c);

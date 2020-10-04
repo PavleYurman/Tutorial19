@@ -19,10 +19,10 @@ public:
 	void ChangeX();
 	void ChangeY();
 	void Rebound(Wall& wl);
-	static Rect GenerateRect();
+
 public:
 	Vec2 pos;
-	Vec2 vel = Vec2(150.0f, 150.0f);
+	Vec2 vel = Vec2(400.0f, 400.0f);
 	Rect r;
 	bool chng_inX = false;
 	bool chng_inY = false;
