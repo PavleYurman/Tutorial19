@@ -34,7 +34,7 @@ void Ball::Update(float dt)
 bool Ball::isCollided(Wall& wl)
 {
 	bool collision = false;
-	r = r.GenerateRect(pos, radius * 2, radius * 2);
+	r = r.GenerateRect(pos, radius, radius );
 	// predpostavimo odboj oz zidu vedno samo od ene stranice, nikoli od dveh hkrati
 	if (r.down >= wl.rectangle.down)
 	{
@@ -75,7 +75,7 @@ void Ball::ChangeY()
 	vel.y = -vel.y;
 }
 
-void Ball::Rebound( Wall& wl )
+void Ball::Rebound(Wall& wl )
 {
 	if (isCollided(wl))
 	{		

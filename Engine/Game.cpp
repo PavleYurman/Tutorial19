@@ -23,14 +23,16 @@
 #include "Vec2.h"
 
 
+
 Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
 	ball(Colors::Yellow),
 	wal(),
-	bounce_sound(L"Sounds\\arkpad.wav")
-{
+	bounce_sound(L"Sounds\\arkpad.wav"),
+	br(Vec2(50.0f, 50.0f), 75.0f, 25.0f, Colors::Green)
+{	
 }
 
 void Game::Go()
@@ -44,17 +46,27 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	float dt = ft.Mark();		
-	ball.Update(dt);
-	ball.Rebound(wal);	
-	if ( ball.isCollided(wal) )
+	ball.Update( dt );
+	ball.Rebound( wal );	
+	if ( ball.isCollided( wal ) )
 	{
 		bounce_sound.Play();
 	}
+	//if ( br.Colide(ball) )
+	//{
+	//	br.isColided = true;
+	//	ball.ChangeY();
+	//}
+	br.ProcessColison( ball );
 }
 
 void Game::ComposeFrame()
 {		
 	ball.Draw(gfx);
-		
+	if ( !br.isColided )
+	{
+		br.Draw( gfx );
+	}
+	
 	/*ball.DrawRectSw(gfx, Colors::Blue);*/
 }

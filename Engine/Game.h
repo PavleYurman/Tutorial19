@@ -27,6 +27,7 @@
 #include "Ball.h"
 #include "Wall.h"
 #include "Sound.h"
+#include "Brick.h"
 
 class Game
 {
@@ -46,6 +47,8 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	Brick br;
+	int countToCollision = 0;
 	FrameTimer ft;
 	Ball ball;
 	Wall wal;
