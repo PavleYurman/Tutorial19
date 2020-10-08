@@ -55,6 +55,7 @@ void Game::UpdateModel()
 	}
 	br.ProcessColison( ball );
 	pad.Move(wnd.kbd, dt, wal);
+	pad.Bounce( ball );
 }
 
 void Game::ComposeFrame()

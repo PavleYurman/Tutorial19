@@ -45,3 +45,12 @@ void Paddle::ProcColision(const Wall& wl)
 	}	
 }
 
+void Paddle::Bounce(Ball& bl)
+{
+	if (bl.vel.y > 0.0 && r.up <= bl.r.down && r.left <= bl.r.right && r.right >= bl.r.left )
+	{
+		bl.ChangeY();
+	}
+}
+
+

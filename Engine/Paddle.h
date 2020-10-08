@@ -11,6 +11,7 @@ public:
 	void Draw(Graphics& gfx);
 	void Move(const Keyboard& kbd, float dt, const Wall& wl);
 	void ProcColision( const Wall& wl );
+	void Bounce( Ball& bl );
 public:
 	Rect r;
 	Rect rect_wh;
