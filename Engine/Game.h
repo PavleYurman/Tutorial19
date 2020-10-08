@@ -28,6 +28,7 @@
 #include "Wall.h"
 #include "Sound.h"
 #include "Brick.h"
+#include "Paddle.h"
 
 class Game
 {
@@ -47,8 +48,8 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-	Brick br;
-	int countToCollision = 0;
+	Paddle pad;
+	Brick br;	
 	FrameTimer ft;
 	Ball ball;
 	Wall wal;

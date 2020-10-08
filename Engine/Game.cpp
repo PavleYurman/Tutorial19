@@ -31,7 +31,8 @@ Game::Game(MainWindow& wnd)
 	ball(Colors::Yellow),
 	wal(),
 	bounce_sound(L"Sounds\\arkpad.wav"),
-	br(Vec2(50.0f, 50.0f), 75.0f, 25.0f, Colors::Green)
+	br(Vec2(50.0f, 50.0f), 75.0f, 25.0f, Colors::Green),
+	pad( Vec2(400.0f, 500.0f), 78.0f, 30.0f, Colors::Red )
 {	
 }
 
@@ -61,7 +62,8 @@ void Game::UpdateModel()
 }
 
 void Game::ComposeFrame()
-{		
+{	
+	pad.Draw(gfx);
 	ball.Draw(gfx);
 	if ( !br.isColided )
 	{
