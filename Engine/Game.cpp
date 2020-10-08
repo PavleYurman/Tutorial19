@@ -53,12 +53,8 @@ void Game::UpdateModel()
 	{
 		bounce_sound.Play();
 	}
-	//if ( br.Colide(ball) )
-	//{
-	//	br.isColided = true;
-	//	ball.ChangeY();
-	//}
 	br.ProcessColison( ball );
+	pad.Move(wnd.kbd, dt, wal);
 }
 
 void Game::ComposeFrame()
