@@ -15,6 +15,7 @@ void Paddle::Draw(Graphics& gfx)
 
 void Paddle::Move(const Keyboard& kbd, float dt, const Wall& wl)
 {
+	
 	if (kbd.KeyIsPressed(VK_LEFT))
 	{
 		r.left -= speed * dt;
@@ -25,10 +26,22 @@ void Paddle::Move(const Keyboard& kbd, float dt, const Wall& wl)
 		r.left += speed * dt;
 		r.right += speed * dt;
 	}
+	ProcColision(wl);
 }
 
-bool Paddle::Colision(const Wall& wl)
+void Paddle::ProcColision(const Wall& wl)
 {
-	return false;
+	if (r.left  <= wl.rectangle.left )
+	{
+		float diff_out = wl.rectangle.left - r.left;
+		r.left += diff_out;
+		r.right += diff_out;
+	}
+	else if ( r.right >= wl.rectangle.right )
+	{
+		float diff_out = r.right - wl.rectangle.right;
+		r.left -= diff_out;
+		r.right -= diff_out;
+	}	
 }
 
