@@ -29,7 +29,9 @@ bool Brick::Colide(Ball& bl)
 }
 
 void Brick::Draw( Graphics& gfx )
-{
-    r.Draw(gfx, c);
+{        
+    r.Draw(gfx, Colors::Black);
+    Rect rTop = Rect(r.left + 1, r.right - 1, r.up + 1, r.down - 1);
+    rTop.Draw(gfx, c);
 }
 
