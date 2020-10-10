@@ -31,9 +31,20 @@ Game::Game(MainWindow& wnd)
 	ball(Colors::Yellow),
 	wal(),
 	bounce_sound(L"Sounds\\arkpad.wav"),
-	br(Vec2(50.0f, 50.0f), 75.0f, 25.0f, Colors::Green),
-	pad( Vec2(400.0f, 500.0f), 78.0f, 30.0f, Colors::Red )
+	pad(Vec2(400.0f, 500.0f), 78.0f, 30.0f, Colors::Red)
+	/*br(Vec2(80.0f, 80.0f) + Vec2(br_width, br_height), br_width, br_height, Colors::Green)	*/
 {	
+	int i = 0;
+	for (int y = 0; y < 6; y++)
+	{
+		for (int x = 0; x < 8; x++)
+		{
+			Color c = Colors::Green;
+			brics[i] = Brick((Vec2(80.0f, 80.0f) + Vec2(x * br_width, y * br_height)), br_width, br_height, c);
+			i++;
+		}
+	}	
+	//br = Brick(Vec2(80.0f, 80.0f) + Vec2(br_width, br_height), br_width, br_height, Colors::Green);
 }
 
 void Game::Go()
@@ -53,7 +64,17 @@ void Game::UpdateModel()
 	{
 		bounce_sound.Play();
 	}
-	br.ProcessColison( ball );
+	
+	for (int i = 0; i < 48; i++)
+	{
+		if ( !brics[i].isColided )
+		{			
+			brics[i].ProcessColison(ball);
+		}
+			
+	}
+	
+	/*br.ProcessColison(ball);*/
 	pad.Move(wnd.kbd, dt, wal);
 	pad.Bounce( ball );
 }
@@ -61,11 +82,17 @@ void Game::UpdateModel()
 void Game::ComposeFrame()
 {	
 	pad.Draw(gfx);
-	ball.Draw(gfx);
-	if ( !br.isColided )
-	{
-		br.Draw( gfx );
+	ball.Draw(gfx);	
+	for (int i = 0; i < 48; i++)
+	{	
+		if (!brics[i].isColided)
+		{
+			brics[i].Draw( gfx );			
+		}	
 	}
-	
-	/*ball.DrawRectSw(gfx, Colors::Blue);*/
+	//if (!br.isColided)
+	//{
+	//	br.Draw(gfx);
+	//}
+
 }

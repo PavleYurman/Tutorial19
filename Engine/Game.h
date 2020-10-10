@@ -47,9 +47,13 @@ private:
 	MainWindow& wnd;
 	Graphics gfx;
 	/********************************/
-	/*  User Variables              */
+	/*  User Variables             */		
 	Paddle pad;
-	Brick br;	
+	static constexpr int nBrics = 48;
+	Brick brics[nBrics];	
+	Brick br;
+	float br_width = 80.0f;
+	float br_height = 25.0f;
 	FrameTimer ft;
 	Ball ball;
 	Wall wal;

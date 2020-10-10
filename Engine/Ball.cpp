@@ -12,7 +12,7 @@ Ball::Ball(const Vec2& pos_in, const Vec2& vel_in, Color c)
 
 Ball::Ball(Color c)
 {
-	pos = Vec2(100.0f, 100.0f);	
+	pos = Vec2(450.0f, 25.0f);	
 	r = r.GenerateRect(pos, radius * 2, radius * 2);
 }
 
