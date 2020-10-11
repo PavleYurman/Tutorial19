@@ -30,7 +30,8 @@ Game::Game(MainWindow& wnd)
 	gfx(wnd),
 	ball(Colors::Yellow),
 	wal(),
-	bounce_sound(L"Sounds\\arkpad.wav"),
+	wal_sound(L"Sounds\\arkpad.wav"),
+	brick_sound(L"Sounds\\arkbrick.wav"),
 	pad(Vec2(400.0f, 500.0f), 78.0f, 30.0f, Colors::Red)
 	/*br(Vec2(80.0f, 80.0f) + Vec2(br_width, br_height), br_width, br_height, Colors::Green)	*/
 {	
@@ -62,16 +63,16 @@ void Game::UpdateModel()
 	ball.Rebound( wal );	
 	if ( ball.isCollided( wal ) )
 	{
-		bounce_sound.Play();
+		wal_sound.Play();
 	}
 	
 	for (int i = 0; i < 48; i++)
-	{
-		if ( !brics[i].isColided )
-		{			
-			brics[i].ProcessColison(ball);
-		}
-			
+	{	
+		if ( brics[i].ProcessColison(ball) )
+		{
+			brick_sound.Play();
+			break;
+		}						
 	}
 	
 	/*br.ProcessColison(ball);*/

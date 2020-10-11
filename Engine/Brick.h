@@ -14,6 +14,6 @@ public:
 	bool isColided = false;
 public:
 	bool Colide( Ball& bl );
-	void ProcessColison(Ball& bl);
+	bool ProcessColison(Ball& bl);
 	void Draw( Graphics& gfx );
 };

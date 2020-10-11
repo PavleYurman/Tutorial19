@@ -57,6 +57,8 @@ private:
 	FrameTimer ft;
 	Ball ball;
 	Wall wal;
-	Sound bounce_sound;
+	Sound wal_sound;
+	Sound brick_sound;
+
 	/********************************/
 };
