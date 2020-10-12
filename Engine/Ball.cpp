@@ -91,7 +91,7 @@ void Ball::Rebound(Wall& wl )
 				pos.y += wl.rectangle.up - r.up;
 			}
 		}
-		else if(chng_inX)
+		if(chng_inX)
 		{
 			ChangeX();
 			if (r.left < wl.rectangle.left)
