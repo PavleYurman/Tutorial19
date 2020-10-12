@@ -35,13 +35,13 @@ Game::Game(MainWindow& wnd)
 	pad(Vec2(400.0f, 500.0f), 78.0f, 30.0f, Colors::Red)
 	/*br(Vec2(80.0f, 80.0f) + Vec2(br_width, br_height), br_width, br_height, Colors::Green)	*/
 {	
+	Color c[6] = { Colors::Blue, Colors::Green, Colors::Gray, Colors::Magenta, Colors::Red, Colors::Cyan };
 	int i = 0;
 	for (int y = 0; y < 6; y++)
 	{
 		for (int x = 0; x < 8; x++)
-		{
-			Color c = Colors::Green;
-			brics[i] = Brick((Vec2(80.0f, 80.0f) + Vec2(x * br_width, y * br_height)), br_width, br_height, c);
+		{			
+			brics[i] = Brick((Vec2(80.0f, 80.0f) + Vec2(x * br_width, y * br_height)), br_width, br_height, c[y]);
 			i++;
 		}
 	}	
