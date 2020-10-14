@@ -8,14 +8,18 @@ Brick::Brick(const Vec2& upperLeft, float width, float hight, Color c_in)
 
 
 bool Brick::ProcessColison(Ball& bl)
-{    
-    if ( isColided )
-    {
-        return false;
-    }
-    else if ( Colide(bl) )
-    {           
-        bl.ChangeY();
+{       
+    if ( !isColided && Colide(bl) )
+    {    
+        if ( ( bl.pos.x >= r.left ) && ( bl.pos.x <= r.right ) )
+        {          
+            bl.ChangeY();
+        }
+        else if ( ( bl.pos.x <= r.left ) || ( bl.pos.x >= r.right ) )
+        {            
+            bl.ChangeX();
+        }        
+               
         isColided = true;
         return true;        
     }

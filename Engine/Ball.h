@@ -10,7 +10,7 @@ class Ball
 {
 public:
 	Ball() = default;
-	Ball( const Vec2& pos, const Vec2& vel, Color c );
+	Ball( const Vec2& pos, const Vec2& vel );
 	Ball( Color c );
 	void Draw( Graphics& gfx );
 	void DrawRectSw( Graphics& gfx, Color c );
@@ -21,7 +21,7 @@ public:
 	void Rebound( Wall& wl );
 public:
 	Vec2 pos;
-	Vec2 vel = Vec2(400.0f, 400.0f);
+	Vec2 vel;
 	Rect r;
 	bool chng_inX = false;
 	bool chng_inY = false;	

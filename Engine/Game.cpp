@@ -28,7 +28,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	ball(Colors::Yellow),
+	ball( Vec2(450.0f, 450.0f), Vec2(-200.0f, -200.0f) ),
 	wal(),
 	wal_sound(L"Sounds\\arkpad.wav"),
 	brick_sound(L"Sounds\\arkbrick.wav"),

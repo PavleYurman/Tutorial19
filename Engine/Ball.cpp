@@ -2,7 +2,7 @@
 #include "SoundEffect.h"
 
 
-Ball::Ball(const Vec2& pos_in, const Vec2& vel_in, Color c)
+Ball::Ball(const Vec2& pos_in, const Vec2& vel_in)
 	:
 	pos(pos_in),
 	vel(vel_in)
@@ -13,6 +13,7 @@ Ball::Ball(const Vec2& pos_in, const Vec2& vel_in, Color c)
 Ball::Ball(Color c)
 {
 	pos = Vec2(450.0f, 25.0f);	
+	vel = Vec2(100.0f, 100.0f);
 	r = r.GenerateRect(pos, radius * 2, radius * 2);
 }
 
