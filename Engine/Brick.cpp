@@ -15,10 +15,10 @@ bool Brick::ProcessColison(Ball& bl)
         {          
             bl.ChangeY();
         }
-        else if ( ( bl.pos.x <= r.left ) || ( bl.pos.x >= r.right ) )
+        else //if ( ( bl.pos.x < r.left ) || ( bl.pos.x > r.right ) )
         {            
             bl.ChangeX();
-        }        
+        }              
                
         isColided = true;
         return true;        
