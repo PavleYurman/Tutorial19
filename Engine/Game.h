@@ -52,6 +52,7 @@ private:
 	static constexpr int nBrics = 48;
 	Brick brics[nBrics];	
 	Brick br;
+	Brick br1;
 	float br_width = 80.0f;
 	float br_height = 25.0f;
 	FrameTimer ft;

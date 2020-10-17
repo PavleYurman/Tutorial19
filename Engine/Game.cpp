@@ -28,12 +28,13 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	ball( Vec2(450.0f, 450.0f), Vec2(-50.0f, -50.0f) ),
+	ball( Vec2(371.0f, 280.0f), Vec2(-50.0f, -50.0f) ),
 	wal(),
 	wal_sound(L"Sounds\\arkpad.wav"),
 	brick_sound(L"Sounds\\arkbrick.wav"),
 	pad(Vec2(400.0f, 500.0f), 78.0f, 30.0f, Colors::Red)
-	/*br(Vec2(80.0f, 80.0f) + Vec2(br_width, br_height), br_width, br_height, Colors::Green)	*/
+	
+
 {	
 	Color c[6] = { Colors::Blue, Colors::Green, Colors::Gray, Colors::Magenta, Colors::Red, Colors::Cyan };
 	int i = 0;
@@ -45,7 +46,8 @@ Game::Game(MainWindow& wnd)
 			i++;
 		}
 	}	
-	//br = Brick(Vec2(80.0f, 80.0f) + Vec2(br_width, br_height), br_width, br_height, Colors::Green);
+/*	br = Brick(Vec2(80.0f, 80.0f) + Vec2(br_width, br_height), br_width, br_height, Colors::Green);
+	br1 = Brick(Vec2(160.0f, 80.0f) + Vec2(br_width, br_height), br_width, br_height, Colors::Green);*/	
 }
 
 void Game::Go()
@@ -66,16 +68,44 @@ void Game::UpdateModel()
 		wal_sound.Play();
 	}
 	
-	for (int i = 0; i < 48; i++)
+	bool colisionHapppened = false;
+	for (int i = 1; i < 48; i++)
 	{	
-		if ( brics[i].ProcessColison(ball) )
+		if ( !brics[ i ].isColided && brics[ i ].Colide(ball))
 		{
-			brick_sound.Play();
+			Vec2 br_centerCur = Vec2( (brics[ i - 1 ].r.left + brics[ i - 1 ].r.right) / 2.0f,
+				(brics[ i - 1 ].r.up + brics[ i - 1 ].r.down) / 2.0f);
+			Vec2 br_centerNew = Vec2( (brics[ i ].r.left + brics[ i ].r.right) / 2.0f,
+				(brics[ i ].r.up + brics[ i ].r.down) / 2.0f );
+			Vec2 vecNew = br_centerNew - ball.pos;
+			Vec2 vecCurrent = ball.pos - br_centerCur;
+			colisionHapppened = true;
+			if (colisionHapppened && vecNew.GetLengthSq() < vecCurrent.GetLengthSq() )
+			{				
+				brics[i].isColided = true;
+				ball.ChangeY();
+				brick_sound.Play();
+			}
+			else
+			{
+				if ( (ball.pos.x >= brics[ i ].r.left) && (ball.pos.x <= brics[i].r.right) )
+				{
+					ball.ChangeY();
+				}
+				else //if ( ( bl.pos.x < r.left ) || ( bl.pos.x > r.right ) )
+				{
+					ball.ChangeX();
+				}
+				brics[i].isColided = true;				
+				brick_sound.Play();
+			}
 			break;
+			
 		}						
 	}
 	
-	/*br.ProcessColison(ball);*/
+	//br.ProcessColison(ball);
+	//br1.ProcessColison(ball);
 	pad.Move(wnd.kbd, dt, wal);
 	pad.Bounce( ball );
 }
@@ -94,6 +124,10 @@ void Game::ComposeFrame()
 	//if (!br.isColided)
 	//{
 	//	br.Draw(gfx);
+	//}
+	//if (!br1.isColided)
+	//{
+	//	br1.Draw(gfx);
 	//}
 
 }
