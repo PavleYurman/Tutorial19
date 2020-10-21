@@ -13,7 +13,7 @@ public:
 	Color c;
 	bool isColided = false;
 public:
-	bool Colide( Ball& bl );
-	bool ProcessColison(Ball& bl);
+	bool CheckForColision( Ball& bl );
+	void ExecuteColison(Ball& bl);
 	void Draw( Graphics& gfx );
 };

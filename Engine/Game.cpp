@@ -28,7 +28,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	ball( Vec2(371.0f, 280.0f), Vec2(-50.0f, -50.0f) ),
+	ball( Vec2(300.0f, 280.0f), Vec2(-350.0f, -350.0f) ),
 	wal(),
 	wal_sound(L"Sounds\\arkpad.wav"),
 	brick_sound(L"Sounds\\arkbrick.wav"),
@@ -68,42 +68,21 @@ void Game::UpdateModel()
 		wal_sound.Play();
 	}
 	
-	bool colisionHapppened = false;
-	for (int i = 1; i < 48; i++)
-	{	
-		if ( !brics[ i ].isColided && brics[ i ].Colide(ball))
-		{
-			Vec2 br_centerCur = Vec2( (brics[ i - 1 ].r.left + brics[ i - 1 ].r.right) / 2.0f,
-				(brics[ i - 1 ].r.up + brics[ i - 1 ].r.down) / 2.0f);
-			Vec2 br_centerNew = Vec2( (brics[ i ].r.left + brics[ i ].r.right) / 2.0f,
-				(brics[ i ].r.up + brics[ i ].r.down) / 2.0f );
-			Vec2 vecNew = br_centerNew - ball.pos;
-			Vec2 vecCurrent = ball.pos - br_centerCur;
-			colisionHapppened = true;
-			if (colisionHapppened && vecNew.GetLengthSq() < vecCurrent.GetLengthSq() )
-			{				
-				brics[i].isColided = true;
-				ball.ChangeY();
-				brick_sound.Play();
-			}
-			else
-			{
-				if ( (ball.pos.x >= brics[ i ].r.left) && (ball.pos.x <= brics[i].r.right) )
-				{
-					ball.ChangeY();
-				}
-				else //if ( ( bl.pos.x < r.left ) || ( bl.pos.x > r.right ) )
-				{
-					ball.ChangeX();
-				}
-				brics[i].isColided = true;				
-				brick_sound.Play();
-			}
+	//bool colisionHapppened = false;	
+	//Vec2 vecCurrent(0.0f, 0.0f);
+
+	for (int i = 0; i < 48; i++)
+	{			
+		if ( !brics[ i ].isColided && brics[ i ].CheckForColision(ball) )
+		{				
+			brics[i].ExecuteColison(ball);			
 			break;
-			
-		}						
+		}	
+		
 	}
 	
+	
+
 	//br.ProcessColison(ball);
 	//br1.ProcessColison(ball);
 	pad.Move(wnd.kbd, dt, wal);

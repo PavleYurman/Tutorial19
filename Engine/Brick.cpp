@@ -1,4 +1,5 @@
 #include "Brick.h"
+#include <assert.h>
 
 Brick::Brick(const Vec2& upperLeft, float width, float hight, Color c_in)
 {
@@ -6,33 +7,29 @@ Brick::Brick(const Vec2& upperLeft, float width, float hight, Color c_in)
     c = c_in;
 }
 
-
-bool Brick::ProcessColison(Ball& bl)
-{       
-    if ( !isColided && Colide(bl) )
-    {    
-        if ( ( bl.pos.x >= r.left ) && ( bl.pos.x <= r.right ) )
-        {          
-            bl.ChangeY();
-        }
-        else //if ( ( bl.pos.x < r.left ) || ( bl.pos.x > r.right ) )
-        {            
-            bl.ChangeX();
-        }              
-               
-        isColided = true;
-        return true;        
-    }
-    return false;
-}
-
-bool Brick::Colide(Ball& bl)
+bool Brick::CheckForColision(Ball& bl)
 {
     return (r.down >= bl.r.up &&
         r.up <= bl.r.down &&
         r.left <= bl.r.right &&
         r.right >= bl.r.left);
 }
+
+void Brick::ExecuteColison(Ball& bl)
+{           
+    if ( ( bl.pos.x >= r.left ) && ( bl.pos.x <= r.right ) )
+    {          
+        bl.ChangeY();
+    }
+    else //if ( ( bl.pos.x < r.left ) || ( bl.pos.x > r.right ) )
+    {            
+        bl.ChangeX();
+    }              
+           
+    isColided = true;  
+}
+
+
 
 void Brick::Draw( Graphics& gfx )
 {        
