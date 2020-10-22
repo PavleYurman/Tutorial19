@@ -28,7 +28,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	ball( Vec2(300.0f, 280.0f), Vec2(-350.0f, -350.0f) ),
+	ball( Vec2(369.0f, 280.0f), Vec2(-50.0f, -50.0f) ),
 	wal(),
 	wal_sound(L"Sounds\\arkpad.wav"),
 	brick_sound(L"Sounds\\arkbrick.wav"),
@@ -65,23 +65,47 @@ void Game::UpdateModel()
 	ball.Rebound( wal );	
 	if ( ball.isCollided( wal ) )
 	{
-		wal_sound.Play();
+		//wal_sound.Play();
 	}
 	
 	//bool colisionHapppened = false;	
 	//Vec2 vecCurrent(0.0f, 0.0f);
-
+	bool colisionHappened = false;
+	int index;
+	Vec2 vecCurrent(0.0f, 0.0f);
+	Vec2 vecNew(0.0f, 0.0f);
+	Vec2 br_centerNew(0.0f, 0.0f);
 	for (int i = 0; i < 48; i++)
 	{			
-		if ( !brics[ i ].isColided && brics[ i ].CheckForColision(ball) )
-		{				
-			brics[i].ExecuteColison(ball);			
-			break;
+		if ( brics[ i ].CheckForColision(ball) )
+		{		
+			Vec2 br_centerNew((brics[i].r.left + brics[i].r.right) / 2.0f,
+				(brics[i].r.up + brics[i].r.down) / 2.0f);
+
+			if (colisionHappened)
+			{
+			vecNew = br_centerNew - ball.pos;
+			vecCurrent = ball.pos - vecCurrent;	
+				if (vecNew.GetLengthSq() < vecCurrent.GetLengthSq())
+				{					
+					index = i;					
+					vecCurrent = br_centerNew;					
+				}
+			}
+			else
+			{						
+				index = i;				
+				colisionHappened = true;
+				vecCurrent = br_centerNew;				
+			}		
 		}	
 		
 	}
 	
-	
+	if (colisionHappened)
+	{
+		brics[index].ExecuteColison(ball);
+	}
 
 	//br.ProcessColison(ball);
 	//br1.ProcessColison(ball);

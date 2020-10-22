@@ -14,6 +14,7 @@ public:
 	bool isColided = false;
 public:
 	bool CheckForColision( Ball& bl );
+	bool Ovrlaping(Ball& bl);
 	void ExecuteColison(Ball& bl);
 	void Draw( Graphics& gfx );
 };

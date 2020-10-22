@@ -104,7 +104,6 @@ void Ball::Rebound(Wall& wl )
 				pos.x -= r.right - wl.rectangle.right;
 			}
 		}
-
 	}
 }
 
