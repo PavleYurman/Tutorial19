@@ -5,6 +5,7 @@ Brick::Brick(const Vec2& upperLeft, float width, float hight, Color c_in)
 {
     r = Rect(upperLeft, width, hight);
     c = c_in;
+    isColided = false;
 }
 
 bool Brick::CheckForColision(Ball& bl)

@@ -11,7 +11,7 @@ public:
 	Brick(const Vec2& upperLeft, float width, float hight, Color c_in);
 	Rect r;
 	Color c;
-	bool isColided = false;
+	bool isColided = true;
 public:
 	bool CheckForColision( Ball& bl );
 	bool Ovrlaping(Ball& bl);
