@@ -28,7 +28,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	ball( Vec2(369.0f, 280.0f), Vec2(-50.0f, -50.0f) ),
+	ball( Vec2(569.0f, 580.0f), Vec2(-350.0f, -350.0f) ),
 	wal(),
 	wal_sound(L"Sounds\\arkpad.wav"),
 	brick_sound(L"Sounds\\arkbrick.wav"),
@@ -65,7 +65,7 @@ void Game::UpdateModel()
 	ball.Rebound( wal );	
 	if ( ball.isCollided( wal ) )
 	{
-		//wal_sound.Play();
+		wal_sound.Play();
 	}
 	
 	//bool colisionHapppened = false;	
@@ -88,8 +88,8 @@ void Game::UpdateModel()
 			vecCurrent = ball.pos - vecCurrent;	
 				if (vecNew.GetLengthSq() < vecCurrent.GetLengthSq())
 				{					
-					index = i;					
-					vecCurrent = br_centerNew;					
+					index = i;	// I understand :) stari index povozimo z novim			
+					vecCurrent = br_centerNew;						
 				}
 			}
 			else
@@ -105,6 +105,7 @@ void Game::UpdateModel()
 	if (colisionHappened)
 	{
 		brics[index].ExecuteColison(ball);
+		brick_sound.Play();
 	}
 
 	//br.ProcessColison(ball);
