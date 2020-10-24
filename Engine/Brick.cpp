@@ -13,6 +13,11 @@ bool Brick::CheckForColision(Ball& bl)
     return (!isColided && Ovrlaping(bl));
 }
 
+Vec2 Brick::getCenter() const
+{
+    return Vec2( (r.up + r.down) / 2.0f, (r.left + r.right) / 2.0f );
+}
+
 bool Brick::Ovrlaping(Ball& bl)
 {
     return (r.down >= bl.r.up &&
@@ -24,15 +29,25 @@ bool Brick::Ovrlaping(Ball& bl)
 
 
 void Brick::ExecuteColison(Ball& bl)
-{           
-    if ( ( bl.pos.x >= r.left ) && ( bl.pos.x <= r.right ) )
-    {          
+{     
+    Vec2 vToBall = bl.pos - getCenter();
+    if ( signbit(vToBall.x) == signbit(getCenter().x) )
+    {
         bl.ChangeY();
     }
-    else //if ( ( bl.pos.x < r.left ) || ( bl.pos.x > r.right ) )
-    {            
-        bl.ChangeX();
-    }              
+    else
+    {
+        if ((bl.pos.x >= r.left) && (bl.pos.x <= r.right))
+        {
+            bl.ChangeY();
+        }
+        else
+        {
+
+            bl.ChangeX();
+        }
+    }
+              
            
     isColided = true;  
 }

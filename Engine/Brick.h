@@ -14,6 +14,7 @@ public:
 	bool isColided = true;
 public:
 	bool CheckForColision( Ball& bl );
+	Vec2 getCenter() const;
 	bool Ovrlaping(Ball& bl);
 	void ExecuteColison(Ball& bl);
 	void Draw( Graphics& gfx );
