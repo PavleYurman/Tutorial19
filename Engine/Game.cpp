@@ -28,7 +28,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	ball( Vec2(569.0f, 580.0f), Vec2(-220.0f, -350.0f) ),
+	ball( Vec2(569.0f, 580.0f), Vec2(-350.0f, -350.0f) ),
 	wal(),
 	wal_sound(L"Sounds\\arkpad.wav"),
 	brick_sound(L"Sounds\\arkbrick.wav"),
@@ -41,11 +41,8 @@ Game::Game(MainWindow& wnd)
 	for (int y = 0; y < 6; y++)
 	{
 		for (int x = 0; x < 8; x++)
-		{	
-			if (x == 3 && y == 3)
-			{
-				brics[i] = Brick((Vec2(80.0f, 80.0f) + Vec2(x * br_width, y * br_height)), br_width, br_height, c[y]);
-			}
+		{			
+			brics[i] = Brick((Vec2(80.0f, 80.0f) + Vec2(x * br_width, y * br_height)), br_width, br_height, c[y]);
 			i++;
 		}
 	}	
