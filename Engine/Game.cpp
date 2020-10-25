@@ -79,24 +79,22 @@ void Game::UpdateModel()
 	{			
 		if ( brics[ i ].CheckForColision(ball) )
 		{		
-			Vec2 br_centerNew((brics[i].r.left + brics[i].r.right) / 2.0f,
-				(brics[i].r.up + brics[i].r.down) / 2.0f);
+			Vec2 br_centerNew = brics[i].getCenter();
 
 			if (colisionHappened)
 			{
-			vecNew = br_centerNew - ball.pos;
-			vecCurrent = ball.pos - vecCurrent;	
+			vecNew = br_centerNew - ball.pos;			
 				if (vecNew.GetLengthSq() < vecCurrent.GetLengthSq())
 				{					
 					index = i;	// I understand :) stari index povozimo z novim			
-					vecCurrent = br_centerNew;						
+					vecCurrent = vecNew;
 				}
 			}
 			else
 			{						
 				index = i;				
 				colisionHappened = true;
-				vecCurrent = br_centerNew;				
+				vecCurrent = vecNew;
 			}		
 		}	
 		
