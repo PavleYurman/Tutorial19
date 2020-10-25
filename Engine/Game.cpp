@@ -66,6 +66,7 @@ void Game::UpdateModel()
 	if ( ball.isCollided( wal ) )
 	{
 		wal_sound.Play();
+		pad.coldown = false;
 	}
 	
 	//bool colisionHapppened = false;	
@@ -104,6 +105,7 @@ void Game::UpdateModel()
 	{
 		brics[index].ExecuteColison(ball);
 		brick_sound.Play();
+		pad.coldown = false;
 	}
 
 	//br.ProcessColison(ball);
@@ -123,13 +125,4 @@ void Game::ComposeFrame()
 			brics[i].Draw( gfx );			
 		}	
 	}
-	//if (!br.isColided)
-	//{
-	//	br.Draw(gfx);
-	//}
-	//if (!br1.isColided)
-	//{
-	//	br1.Draw(gfx);
-	//}
-
 }

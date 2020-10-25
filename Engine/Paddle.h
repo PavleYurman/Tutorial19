@@ -12,9 +12,12 @@ public:
 	void Move(const Keyboard& kbd, float dt, const Wall& wl);
 	void ProcColision( const Wall& wl );
 	void Bounce( Ball& bl );
+	Vec2 getCenter();
+	bool Ovrlaping(Ball& bl);
 public:
 	Rect r;
 	Rect rect_wh;
 	Color c;
 	float speed = 400.0f;
+	bool coldown = false; // make the padle and ball to bounce only once
 };

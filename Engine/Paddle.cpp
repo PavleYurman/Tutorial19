@@ -45,12 +45,45 @@ void Paddle::ProcColision(const Wall& wl)
 	}	
 }
 
+bool  Paddle::Ovrlaping(Ball& bl)
+{
+	return (r.down >= bl.r.up &&
+		r.up <= bl.r.down &&
+		r.left <= bl.r.right &&
+		r.right >= bl.r.left);
+}
+
 void Paddle::Bounce(Ball& bl)
 {
-	if (bl.vel.y > 0.0 && r.up <= bl.r.down && r.left <= bl.r.right && r.right >= bl.r.left )
+	if ( !coldown && Ovrlaping( bl )  )
 	{
-		bl.ChangeY();
+		if (signbit(bl.vel.x) == signbit((bl.pos - getCenter()).x))
+		{
+			bl.ChangeY();
+		}
+		else
+		{
+			if ((bl.pos.x >= r.left) && (bl.pos.x <= r.right))
+			{
+				bl.ChangeY();
+			}
+			else
+			{
+
+				bl.ChangeX();
+			}
+		}
+		coldown = true; // coldown starts when hitting the ball and
+						//ends when hitting wal or brick - check game.cpp
 	}
+
+	
 }
+
+Vec2 Paddle::getCenter()
+{
+	return Vec2((r.up + r.down) / 2.0f, (r.left + r.right) / 2.0f);
+}
+
 
 
