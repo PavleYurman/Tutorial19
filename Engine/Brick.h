@@ -13,6 +13,7 @@ public:
 	Color c;
 	bool isColided = true;
 public:
+	Vec2 getCenter();
 	bool CheckForColision( Ball& bl );
 	bool Ovrlaping(Ball& bl);
 	void ExecuteColison(Ball& bl);
