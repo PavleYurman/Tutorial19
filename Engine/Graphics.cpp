@@ -309,6 +309,10 @@ void Graphics::BeginFrame()
 
 void Graphics::PutPixel( int x,int y,Color c )
 {
+	if (y >= 600 || y < 0) // break the function in this case
+	{
+		return;
+	}
 	assert( x >= 0 );
 	assert( x < int( Graphics::ScreenWidth ) );
 	assert( y >= 0 );
