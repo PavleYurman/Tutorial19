@@ -11,7 +11,7 @@ public:
 	Brick(const Vec2& upperLeft, float width, float hight, Color c_in);
 	Rect r;
 	Color c;
-	bool isColided = true;
+	bool isColided = false;
 public:
 	Vec2 getCenter();
 	bool CheckForColision( Ball& bl );

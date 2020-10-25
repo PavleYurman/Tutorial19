@@ -28,7 +28,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	ball( Vec2( 125.0f + 5, 0.0f ), Vec2( 250.0f, 250 ) ),
+	ball( Vec2( 40.0f, 550.0f ), Vec2( 400.0f, 500 ) ),
 	wal(),
 	wal_sound(L"Sounds\\arkpad.wav"),
 	brick_sound(L"Sounds\\arkbrick.wav"),
@@ -42,10 +42,8 @@ Game::Game(MainWindow& wnd)
 	{
 		for (int x = 0; x < 8; x++)
 		{	
-			if (x == 3 && y == 3)
-			{
-				brics[i] = Brick((Vec2(80.0f, 80.0f) + Vec2(x * br_width, y * br_height)), br_width, br_height, c[y]);
-			}
+		
+			brics[i] = Brick((Vec2(80.0f, 80.0f) + Vec2(x * br_width, y * br_height)), br_width, br_height, c[y]);			
 			i++;
 		}
 	}	
@@ -82,8 +80,7 @@ void Game::UpdateModel()
 	{			
 		if ( brics[ i ].CheckForColision(ball) )
 		{		
-			Vec2 br_centerNew((brics[i].r.left + brics[i].r.right) / 2.0f,
-				(brics[i].r.up + brics[i].r.down) / 2.0f);
+			Vec2 br_centerNew = brics[i].getCenter();
 
 			if (colisionHappened)
 			{
@@ -92,7 +89,7 @@ void Game::UpdateModel()
 				if (vecNew.GetLengthSq() < vecCurrent.GetLengthSq())
 				{					
 					index = i;	// I understand :) stari index povozimo z novim			
-					vecCurrent = br_centerNew;						
+					vecCurrent = vecNew;
 				}
 			}
 			else
