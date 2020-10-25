@@ -28,9 +28,8 @@ bool Brick::Ovrlaping(Ball& bl)
 
 
 void Brick::ExecuteColison(Ball& bl)
-{     
-    Vec2 vToBall = bl.pos - getCenter();
-    if ( signbit(vToBall.x) == signbit(getCenter().x) )
+{         
+    if (signbit(bl.vel.x) == signbit((bl.pos - getCenter()).x))
     {
         bl.ChangeY();
     }
