@@ -21,6 +21,7 @@
 #include "MainWindow.h"
 #include "Game.h"
 #include "Vec2.h"
+#include <math.h>
 
 
 
@@ -52,15 +53,22 @@ Game::Game(MainWindow& wnd)
 
 void Game::Go()
 {
-	gfx.BeginFrame();	
-	UpdateModel();
+	gfx.BeginFrame();
+	// elapsed time frame of 16ms is devided into smaller time frames of 1.0ms making the game more responsive
+	float elapsedTime = ft.Mark(); // this screen has 16ms refresh rate
+	while ( elapsedTime > 0.0f )
+	{
+		const float dt = std::min(0.025f, elapsedTime);
+		UpdateModel(dt);
+		elapsedTime -= dt;
+	}
+	
 	ComposeFrame();
 	gfx.EndFrame();
 }
 
-void Game::UpdateModel()
-{
-	float dt = ft.Mark();		
+void Game::UpdateModel( float dt )
+{			
 	ball.Update( dt );
 	ball.Rebound( wal );	
 	if ( ball.isCollided( wal ) )
